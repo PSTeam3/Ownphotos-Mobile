@@ -1,28 +1,32 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//import 'package:multi_image_picker/multi_image_picker.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key}) : super(key: key);
-
+class Practice extends StatefulWidget {
   @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+  State<StatefulWidget> createState() => new _PracticeState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _PracticeState extends State<Practice>{
+
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
+
     Text(
       'Index 0: Home',
       style: optionStyle,
     ),
     Text(
-      'Index 1: Business',
+      'Index 1: Date',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 2: Search',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 3: Me',
       style: optionStyle,
     ),
   ];
@@ -32,28 +36,65 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+    return new Scaffold(
+      appBar: new AppBar(
+        backgroundColor: Color.fromARGB(255, 185, 219, 142),
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(0,0, 40, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/OwnPhotoBW.png',
+                fit: BoxFit.contain,
+                height: 50,
+              ),
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                Text(
+                    "Photo",
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    textDirection: TextDirection.ltr
+                ),
+              )
+            ],
+          ),
+        ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Stack(
+        children: <Widget>[
+          showForm2(),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(50.0, 200.0, 0.0, 0.0),
+              child :
+              _widgetOptions.elementAt(_selectedIndex)
+          ),
+          //showCircularProgress(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[200],
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('Business'),
+            icon: Icon(Icons.calendar_today),
+            title: Text('Date'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School'),
+            icon: Icon(Icons.search),
+            title: Text('Search'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_box),
+            title: Text('Me'),
           ),
         ],
         currentIndex: _selectedIndex,
@@ -62,4 +103,45 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
     );
   }
+}
+
+Widget showForm2() {
+
+  return new Container(
+      padding: EdgeInsets.all(16.0),
+      child: new Form(
+        //key: _formKey,
+        child: new ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            showDate(),
+            //showImage(),
+            //showPasswordInput(),
+            //showPrimaryButton(),
+            //showSecondaryButton(),
+            //showErrorMessage(),
+          ],
+        ),
+      ));
+}
+
+Widget showDate() {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
+    child: new Text(
+      'Yesterday 22:17 ',
+      style: TextStyle(color: Colors.orange[300], fontWeight: FontWeight.bold, fontSize: 16.0),
+    ),
+  );
+}
+
+
+Widget showImage() {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
+    child: new Text(
+      'Yesterday 22:17 ',
+      style: TextStyle(color: Colors.orange[300], fontWeight: FontWeight.bold, fontSize: 16.0),
+    ),
+  );
 }
