@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-//import 'package:multi_image_picker/multi_image_picker.dart';
+import 'login_signup_page.dart';
 
-class Practice extends StatefulWidget {
+
+class BottomNavigation extends StatefulWidget {
+
+
   @override
-  State<StatefulWidget> createState() => new _PracticeState();
+  State<StatefulWidget> createState() => new _BottomNavigationBar();
 }
 
-class _PracticeState extends State<Practice>{
+class _BottomNavigationBar extends State<BottomNavigation>{
 
   int _selectedIndex = 0;
   static const TextStyle optionStyle =

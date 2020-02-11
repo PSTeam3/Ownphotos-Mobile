@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/BottomNavigationBar.dart';
+import 'data.dart';
+import 'bottomNavigationBar.dart';
+import 'main.dart';
+
 
 class LoginSignupPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _LoginSignupPageState();
-
 }
 
 class _LoginSignupPageState extends State<LoginSignupPage>{
+
   @override
 
 //final formKey = new GlobalKey<FormState>();
@@ -35,7 +38,6 @@ Widget showForm(BuildContext context) {
   return new Container(
       padding: EdgeInsets.all(16.0),
       child: new Form(
-        //key: _formKey,
         child: new ListView(
           shrinkWrap: true,
           children: <Widget>[
@@ -43,24 +45,11 @@ Widget showForm(BuildContext context) {
             showEmailInput(),
             showPasswordInput(),
             showPrimaryButton(context),
-            //showSecondaryButton(),
-            //showErrorMessage(),
           ],
         ),
       ));
 }
 
-/*
-Widget showCircularProgress() {
-    if (_isLoading) {
-      return Center(child: CircularProgressIndicator());
-    }
-    return Container(
-      height: 0.0,
-      width: 0.0,
-    );
-  }
-*/
 Widget showLogo() {
   return new Hero(
     tag: 'hero',
@@ -69,7 +58,7 @@ Widget showLogo() {
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 150.0,
-        child: Image.asset('assets/OwnPhoto44.png'),
+        child: Image.asset('design/icon.png'),
       ),
     ),
   );
@@ -109,7 +98,7 @@ Widget showPasswordInput() {
             color: Colors.grey,
           )),
       validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
-      //onSaved: (value) => data.password = value.trim(),
+      onSaved: (value) => data.password = value.trim(),
     ),
   );
 }
@@ -132,45 +121,8 @@ Widget showPrimaryButton(BuildContext context) {
             ),
             onPressed: () {
               print('debug');
-              Navigator.push(context, new MaterialPageRoute(builder: (context)=>Practice()));
+              Navigator.push(context, new MaterialPageRoute(builder: (context)=>BottomNavigation()));
             }
         ),
       ));
 }
-
-/*
-Widget showSecondaryButton() {
-    return new FlatButton(
-        child: new Text(
-           // _isLoginForm ? 'Create an account' :
-            'Have an account? Sign in',
-            style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300, color: Colors.grey)),
-        onPressed: toggleFormMode);
-  }
-void toggleFormMode() async {
-    print("hello");
-}*/
-/*
-void toggleFormMode() {
-    resetForm();
-    setState(() {
-      _isLoginForm = !_isLoginForm;
-    });
-  }
-Widget showErrorMessage() {
-    if (_errorMessage.length > 0 && _errorMessage != null) {
-      return new Text(
-        _errorMessage,
-        style: TextStyle(
-            fontSize: 13.0,
-            color: Colors.red,
-            height: 1.0,
-            fontWeight: FontWeight.w300),
-      );
-    } else {
-      return new Container(
-        height: 0.0,
-      );
-    }
-  }
-*/
