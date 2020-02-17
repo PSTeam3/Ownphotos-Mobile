@@ -285,7 +285,7 @@ List<Container> _buildGridTileList(int count, Map<String, String> headersMap,Bui
     );
   }
 
-Future<void> getPhotos () async{
+void getPhotos () async{
   String username = 'admin';
   String password = 'here1234';
   String basicAuth =
